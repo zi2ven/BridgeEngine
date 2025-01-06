@@ -101,28 +101,43 @@ void bapi_font(int x0, int y0, LPCWSTR str, char r, char g, char b)
 // Windows
 void bapi_image(int x0, int y0, int xsize, int ysize, LPCWSTR file_path)
 {
-	HDC hdc = GetDC(XBE_hWnd);
-
-	// º”‘ÿÕº∆¨
-	HBITMAP hBitmap = (HBITMAP)LoadImage(NULL, 
-										file_path, 
-										IMAGE_BITMAP, 
-										0, 0, 
-										LR_LOADFROMFILE);
-
-	// ªÊ÷∆Õº∆¨
-	HDC memDC = CreateCompatibleDC(hdc);
-	HGDIOBJ hOld = SelectObject(memDC, hBitmap);
-	BitBlt(hdc, x0, y0, xsize, ysize, memDC, x0, y0, SRCCOPY);
-
-	SelectObject(hdc, hOld);
-	//  Õ∑≈◊ ‘¥
-	DeleteDC(memDC);
-	DeleteObject(hBitmap);
-	ReleaseDC(XBE_hWnd, hdc);
+	HBITMAP Image;
+	HWND hImage;
+	Image = (HBITMAP)LoadImage(NULL, file_path, IMAGE_BITMAP, xsize, ysize, LR_LOADFROMFILE);
+	hImage = CreateWindowW(
+		L"Static", NULL,
+		WS_VISIBLE | WS_CHILD | SS_BITMAP,
+		x0, y0, xsize, ysize,
+		XBE_hWnd, nullptr, nullptr, nullptr
+	);
+	SendMessageW(hImage, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)(Image));
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
 void bapi_image(int x0, int y0, int xsize, int ysize, LPCWSTR file_path)
+{
+	// pass
+#endif
+	return;
+}
+
+/* Õº∆¨ */
+#if PLATFORM == PLATFORM_WINDOWS
+// Windows
+void bapi_icon(LPCWSTR file_path)
+{
+	HBITMAP Image;
+	HWND hImage;
+	Image = (HBITMAP)LoadImage(NULL, file_path, IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
+	hImage = CreateWindowW(
+		L"Static", NULL,
+		WS_VISIBLE | WS_CHILD | SS_ICON,
+		0, 0, 64, 64,
+		XBE_hWnd, nullptr, nullptr, nullptr
+	);
+	SendMessageW(hImage, STM_SETICON, IMAGE_ICON, (LPARAM)(Image));
+#elif PLATFORM == PLATFORM_XJ380
+// XJ380
+void bapi_icon(int x0, int y0, int xsize, int ysize, LPCWSTR file_path)
 {
 	// pass
 #endif

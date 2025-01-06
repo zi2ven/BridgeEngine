@@ -4,6 +4,7 @@
 #if PLATFORM == PLATFORM_WINDOWS
 HWND XBE_hWnd;
 WNDCLASSEX Window;
+HINSTANCE XBE_hInstance;
 
 LRESULT CALLBACK BE_WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -40,13 +41,14 @@ bool InitEngine(HINSTANCE hInstance, LPCWSTR Title, int width, int height)
 	Window.lpszMenuName = nullptr;
 	Window.lpszClassName = L"XJBrigeEngine";
 	Window.hIconSm = nullptr;
+	XBE_hInstance = hInstance;
 
 	RegisterClassEx(&Window);
 
 	XBE_hWnd = CreateWindowEx(
 		0, L"XJBrigeEngine",
 		Title,
-		WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
+		WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU | SS_BITMAP,
 		200, 200, width, height,
 		nullptr, nullptr, hInstance, nullptr
 	);
