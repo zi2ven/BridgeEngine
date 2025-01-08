@@ -96,6 +96,44 @@ void bapi_font(int x0, int y0, LPCWSTR str, char r, char g, char b)
 	return;
 }
 
+/* 写字儿（非透明背景） */
+#if PLATFORM == PLATFORM_WINDOWS
+// Windows
+void bapi_font_bk(int x0, int y0, int size, LPCWSTR str, char r, char g, char b, LPCWSTR font, char br, char bg, char bb)
+{
+	HDC hdc = GetDC(XBE_hWnd); // 获取窗口的DC
+	SetTextColor(hdc, RGB(r, g, b)); // 创建实线画笔
+	SetBkMode(hdc, BKMODE_LAST);
+	SetBkColor(hdc, RGB(br, bg, bb));
+	HFONT hFont = CreateFont(size, 0,
+		0, 0,
+		FW_NORMAL,
+		0, 0, 0,
+		GB2312_CHARSET,
+		OUT_DEFAULT_PRECIS,
+		CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY,
+		DEFAULT_PITCH | FF_DONTCARE,
+		font);
+	HGDIOBJ hOld = SelectObject(hdc, hFont); // 将文字选择到DC中
+
+	// 绘图操作
+	TextOut(hdc, x0, y0, str, lstrlen(str));
+
+	// 恢复原来的对象
+	SelectObject(hdc, hOld);
+	DeleteObject(hFont); // 删除创建的对象，避免内存泄漏
+
+	ReleaseDC(XBE_hWnd, hdc); // 释放DC
+#elif PLATFORM == PLATFORM_XJ380
+// XJ380
+void bapi_font_bk(int x0, int y0, LPCWSTR str, char r, char g, char b)
+{
+	// pass
+#endif
+	return;
+}
+
 /* 图片 */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
