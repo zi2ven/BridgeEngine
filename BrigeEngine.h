@@ -33,6 +33,9 @@ struct MOUSE_INFO {
 #include <sstream>
 #include <windowsx.h>
 #include <atlconv.h>
+#include <gdiplus.h>
+
+#pragma comment(lib, "gdiplus.lib")
 
 extern HWND XBE_hWnd;
 extern WNDCLASSEX Window;
@@ -49,14 +52,21 @@ struct WIN_MOUSE_FIFO {
 	POINTS pos;
 };
 
+struct CAMERA_INFO {
+	unsigned int x, y, z;
+};
+
 #define BE_LEFT_BUTTON		0
 #define BE_RIGHT_BUTTON		1
 #define BE_MIDDLE_BUTTON	2
+
+BHDLL HBITMAP LoadBitmapFromResource(LPCWSTR PicName, bool transparent = true);
 
 // sw_main.cpp
 BHDLL bool InitEngine(HINSTANCE hInstance, LPCWSTR Title, int width, int height);
 BHDLL void RefreshWindow();
 BHDLL bool ProcessMessage(LPMSG message);
+BHDLL void InitMap(const char* FilePath);
 BHDLL void GetMouseInfo(MOUSE_INFO* msinf);
 BHDLL void BE_Rect();
 
@@ -67,6 +77,7 @@ BHDLL void bapi_font(int x0, int y0, int size, LPCWSTR str, char r, char g, char
 BHDLL void bapi_font_bk(int x0, int y0, int size, LPCWSTR str, char r, char g, char b, LPCWSTR font, char br, char bg, char bb);
 BHDLL void bapi_image(int x0, int y0, int xsize, int ysize, LPCWSTR file_path);
 BHDLL void bapi_icon(LPCWSTR file_path);
+BHDLL void bapi_png(int x0, int y0, int xsize, int ysize, LPCWSTR file_path);
 
 #elif PLATFORM == PLATFORM_XJ380
 

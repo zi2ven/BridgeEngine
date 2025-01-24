@@ -138,9 +138,6 @@
   <ItemGroup>
     <ClCompile Include="console.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="XINGJI.bmp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

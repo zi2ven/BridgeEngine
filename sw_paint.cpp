@@ -158,7 +158,7 @@ void bapi_image(int x0, int y0, int xsize, int ysize, LPCWSTR file_path)
 	return;
 }
 
-/* ͼƬ */
+/* ͼ�� */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
 void bapi_icon(LPCWSTR file_path)
@@ -176,6 +176,30 @@ void bapi_icon(LPCWSTR file_path)
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
 void bapi_icon(int x0, int y0, int xsize, int ysize, LPCWSTR file_path)
+{
+	// pass
+#endif
+	return;
+}
+
+/* PNGͼƬ */
+#if PLATFORM == PLATFORM_WINDOWS
+// Windows
+void bapi_png(int x0, int y0, int xsize, int ysize, LPCWSTR file_path)
+{
+	HBITMAP Image;
+	HWND hImage;
+	Image = LoadBitmapFromResource(file_path);
+	hImage = CreateWindowW(
+		L"Static", NULL,
+		WS_VISIBLE | WS_CHILD | SS_BITMAP,
+		x0, y0, xsize, ysize,
+		XBE_hWnd, nullptr, nullptr, nullptr
+	);
+	SendMessageW(hImage, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)(Image));
+#elif PLATFORM == PLATFORM_XJ380
+// XJ380
+void bapi_png(int x0, int y0, int xsize, int ysize, LPCWSTR file_path)
 {
 	// pass
 #endif
