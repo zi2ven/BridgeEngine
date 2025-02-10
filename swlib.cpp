@@ -6,7 +6,7 @@
 #endif
 
 #if PLATFORM == PLATFORM_WINDOWS
-HBITMAP LoadBitmapFromResource(LPCWSTR PicName, bool transparent)
+BHDLL HBITMAP LoadBitmapFromResource(LPCWSTR PicName, bool transparent)
 {
     HANDLE hGlobal = NULL;
     ULONG_PTR GDIToken = 0;

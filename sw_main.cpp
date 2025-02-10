@@ -57,7 +57,7 @@ LRESULT CALLBACK BE_WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 }
 #endif
 
-/* ³õÊ¼»¯ */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½ */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
 bool InitEngine(HINSTANCE hInstance, LPCWSTR Title, int width, int height)
@@ -98,31 +98,35 @@ bool InitEngine(HINSTANCE hInstance, LPCWSTR Title, int width, int height)
 	ShowWindow(XBE_hWnd, SW_SHOW);
 
 	RefreshWindow();
+	return true;
+}
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
 bool InitEngine() 
 {
 	// pass
-#endif
 	return true;
 }
+#endif
 
-/* Ë¢ÐÂ */
+/* Ë¢ï¿½ï¿½ */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
 void RefreshWindow()
 {
 	UpdateWindow(XBE_hWnd);
+	return;
+}
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
 void InitEngine()
 {
 	// pass
-#endif
 	return;
 }
+#endif
 
-/* ÏûÏ¢´¦Àí */
+/* ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
 bool ProcessMessage(LPMSG message)
@@ -130,15 +134,18 @@ bool ProcessMessage(LPMSG message)
 	TranslateMessage(message);
 	DispatchMessage(message);
 	return GetMessage(message, nullptr, 0, 0);
+	return true;
+}
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
 bool ProcessMessage()
 {
 	// pass
-#endif
+	return true;
 }
+#endif
 
-/* ³õÊ¼»¯µØÍ¼ */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í¼ */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
 void InitMap(const char* FilePath)
@@ -156,16 +163,18 @@ void InitMap(const char* FilePath)
 		bapi_line(0, y, WinX, y, 0, 0, 0);
 	}
 
+	return;
+}
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
 void InitMap()
 {
 	// pass
-#endif
 	return;
 }
+#endif
 
-/* Êó±ê×ø±ê */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
 void GetMouseInfo(MOUSE_INFO* msinf)
@@ -185,10 +194,11 @@ void GetMouseInfo(MOUSE_INFO* msinf)
 		break;
 	}
 	return;
+}
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
 void GetMouseInfo()
 {
 	// pass
-#endif
 }
+#endif

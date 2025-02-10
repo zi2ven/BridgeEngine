@@ -1,11 +1,11 @@
 #pragma once
 
-#ifndef _EDLL_H_
-#define _EDLL_H_
+#define PLATFORM_XJ380 0
+#define PLATFORM_WINDOWS 1
+#define PLATFORM_LINUX 2
 
-#define PLATFORM_XJ380		0
-#define PLATFORM_WINDOWS	1
-
-#define PLATFORM			PLATFORM_WINDOWS
-
+#ifdef _WIN32
+#define PLATFORM PLATFORM_WINDOWS
+#elif defined(linux)
+#define PLATFORM PLATFORM_LINUX
 #endif
