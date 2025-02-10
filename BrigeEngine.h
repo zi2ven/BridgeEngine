@@ -18,8 +18,8 @@ BHDLL void inputcon(char *str);
 #define DEBUG
 
 struct MOUSE_INFO {
-  short x, y;
-  bool lb, mb, rb;
+    short x, y;
+    bool lb, mb, rb;
 };
 
 #if PLATFORM == PLATFORM_WINDOWS
@@ -31,7 +31,6 @@ struct MOUSE_INFO {
 #include <wincodec.h>
 #include <windowsx.h>
 
-
 #pragma comment(lib, "gdiplus.lib")
 #pragma comment(lib, "user32.lib")
 #pragma comment(lib, "Ole32.lib")
@@ -42,18 +41,18 @@ extern WNDCLASSEX Window;
 extern HINSTANCE XBE_hInstance;
 
 struct WIN_KEY_FIFO {
-  unsigned short fifo[32];
-  short p_read, p_write;
+    unsigned short fifo[32];
+    short p_read, p_write;
 };
 
 struct WIN_MOUSE_FIFO {
-  unsigned short fifo[32];
-  short p_read, p_write;
-  POINTS pos;
+    unsigned short fifo[32];
+    short p_read, p_write;
+    POINTS pos;
 };
 
 struct CAMERA_INFO {
-  unsigned int x, y, z;
+    unsigned int x, y, z;
 };
 
 #define BE_LEFT_BUTTON 0
