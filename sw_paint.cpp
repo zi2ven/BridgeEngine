@@ -4,204 +4,186 @@
 #if PLATFORM == PLATFORM_WINDOWS
 #endif
 
-/* »­Ïß */
+/* ç”»çº¿ */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
-void bapi_line(int x0, int y0, int x1, int y1, char r, char g, char b)
-{
-	HDC hdc = GetDC(XBE_hWnd); // »ñÈ¡´°¿ÚµÄDC
-	HPEN hPen = CreatePen(PS_SOLID, 1, RGB(r, g, b)); // ´´½¨ÊµÏß»­±Ê
-	SetBkMode(hdc, TRANSPARENT);
-	HGDIOBJ hOld = SelectObject(hdc, hPen); // ½«»­±ÊÑ¡Ôñµ½DCÖĞ
+void bapi_line(int x0, int y0, int x1, int y1, char r, char g, char b) {
+    HDC hdc = GetDC(XBE_hWnd);                        // è·å–çª—å£çš„DC
+    HPEN hPen = CreatePen(PS_SOLID, 1, RGB(r, g, b)); // åˆ›å»ºå®çº¿ç”»ç¬”
+    SetBkMode(hdc, TRANSPARENT);
+    HGDIOBJ hOld = SelectObject(hdc, hPen); // å°†ç”»ç¬”é€‰æ‹©åˆ°DCä¸­
 
-	// »æÍ¼²Ù×÷
-	MoveToEx(hdc, x0, y0, NULL); // ÒÆ¶¯µ½ÆğÊ¼µã
-	LineTo(hdc, x1, y1); // »­Ïßµ½(100, 100)
+    // ç»˜å›¾æ“ä½œ
+    MoveToEx(hdc, x0, y0, NULL); // ç§»åŠ¨åˆ°èµ·å§‹ç‚¹
+    LineTo(hdc, x1, y1);         // ç”»çº¿åˆ°(100, 100)
 
-	// »Ö¸´Ô­À´µÄ¶ÔÏó
-	SelectObject(hdc, hOld);
-	DeleteObject(hPen); // É¾³ı´´½¨µÄ¶ÔÏó£¬±ÜÃâÄÚ´æĞ¹Â©
+    // æ¢å¤åŸæ¥çš„å¯¹è±¡
+    SelectObject(hdc, hOld);
+    DeleteObject(hPen); // åˆ é™¤åˆ›å»ºçš„å¯¹è±¡ï¼Œé¿å…å†…å­˜æ³„æ¼
 
-	ReleaseDC(XBE_hWnd, hdc); // ÊÍ·ÅDC
+    ReleaseDC(XBE_hWnd, hdc); // é‡Šæ”¾DC
+    return;
+}
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
-void bapi_line(int x0, int y0, int x1, int y1, char r, char g, char b)
-{
-	// pass
-#endif
-	return;
+void bapi_line(int x0, int y0, int x1, int y1, char r, char g, char b) {
+    // pass
+    return;
 }
+#endif
 
-/* »­ÍÖÔ² */
+/* ç”»æ¤­åœ† */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
-void bapi_ellipse(int x0, int y0, int x1, int y1, char r, char g, char b)
-{
-	HDC hdc = GetDC(XBE_hWnd); // »ñÈ¡´°¿ÚµÄDC
-	HPEN hPen = CreatePen(PS_SOLID, 1, RGB(r, g, b)); // ´´½¨ÊµÏß»­±Ê
-	SetBkMode(hdc, TRANSPARENT);
-	HGDIOBJ hOld = SelectObject(hdc, hPen); // ½«»­±ÊÑ¡Ôñµ½DCÖĞ
+void bapi_ellipse(int x0, int y0, int x1, int y1, char r, char g, char b) {
+    HDC hdc = GetDC(XBE_hWnd);                        // è·å–çª—å£çš„DC
+    HPEN hPen = CreatePen(PS_SOLID, 1, RGB(r, g, b)); // åˆ›å»ºå®çº¿ç”»ç¬”
+    SetBkMode(hdc, TRANSPARENT);
+    HGDIOBJ hOld = SelectObject(hdc, hPen); // å°†ç”»ç¬”é€‰æ‹©åˆ°DCä¸­
 
-	// »æÍ¼²Ù×÷
-	Ellipse(hdc, x0, y0, x1, y1);
+    // ç»˜å›¾æ“ä½œ
+    Ellipse(hdc, x0, y0, x1, y1);
 
-	// »Ö¸´Ô­À´µÄ¶ÔÏó
-	SelectObject(hdc, hOld);
-	DeleteObject(hPen); // É¾³ı´´½¨µÄ¶ÔÏó£¬±ÜÃâÄÚ´æĞ¹Â©
+    // æ¢å¤åŸæ¥çš„å¯¹è±¡
+    SelectObject(hdc, hOld);
+    DeleteObject(hPen); // åˆ é™¤åˆ›å»ºçš„å¯¹è±¡ï¼Œé¿å…å†…å­˜æ³„æ¼
 
-	ReleaseDC(XBE_hWnd, hdc); // ÊÍ·ÅDC
+    ReleaseDC(XBE_hWnd, hdc); // é‡Šæ”¾DC
+    return;
+}
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
-void bapi_ellipse(int x0, int y0, int x1, int y1, char r, char g, char b)
-{
-	// pass
-#endif
-	return;
+void bapi_ellipse(int x0, int y0, int x1, int y1, char r, char g, char b) {
+    // pass
+    return;
 }
+#endif
 
-/* Ğ´×Ö¶ù */
+/* å†™å­—å„¿ */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
-void bapi_font(int x0, int y0, int size, LPCWSTR str, char r, char g, char b, LPCWSTR font)
-{
-	HDC hdc = GetDC(XBE_hWnd); // »ñÈ¡´°¿ÚµÄDC
-	SetTextColor(hdc, RGB(r, g, b)); // ´´½¨ÊµÏß»­±Ê
-	SetBkMode(hdc, TRANSPARENT);
-	HFONT hFont = CreateFont(size, 0, 
-								0, 0, 
-								FW_NORMAL, 
-								0, 0, 0, 
-								GB2312_CHARSET, 
-								OUT_DEFAULT_PRECIS,
-								CLIP_DEFAULT_PRECIS,
-								DEFAULT_QUALITY,
-								DEFAULT_PITCH | FF_DONTCARE,
-								font);
-	HGDIOBJ hOld = SelectObject(hdc, hFont); // ½«ÎÄ×ÖÑ¡Ôñµ½DCÖĞ
+void bapi_font(int x0, int y0, int size, LPCWSTR str, char r, char g, char b,
+               LPCWSTR font) {
+    HDC hdc = GetDC(XBE_hWnd);       // è·å–çª—å£çš„DC
+    SetTextColor(hdc, RGB(r, g, b)); // åˆ›å»ºå®çº¿ç”»ç¬”
+    SetBkMode(hdc, TRANSPARENT);
+    HFONT hFont =
+        CreateFont(size, 0, 0, 0, FW_NORMAL, 0, 0, 0, GB2312_CHARSET,
+                   OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY,
+                   DEFAULT_PITCH | FF_DONTCARE, font);
+    HGDIOBJ hOld = SelectObject(hdc, hFont); // å°†æ–‡å­—é€‰æ‹©åˆ°DCä¸­
 
-	// »æÍ¼²Ù×÷
-	TextOut(hdc, x0, y0, str, lstrlen(str));
+    // ç»˜å›¾æ“ä½œ
+    TextOut(hdc, x0, y0, str, lstrlen(str));
 
-	// »Ö¸´Ô­À´µÄ¶ÔÏó
-	SelectObject(hdc, hOld);
-	DeleteObject(hFont); // É¾³ı´´½¨µÄ¶ÔÏó£¬±ÜÃâÄÚ´æĞ¹Â©
+    // æ¢å¤åŸæ¥çš„å¯¹è±¡
+    SelectObject(hdc, hOld);
+    DeleteObject(hFont); // åˆ é™¤åˆ›å»ºçš„å¯¹è±¡ï¼Œé¿å…å†…å­˜æ³„æ¼
 
-	ReleaseDC(XBE_hWnd, hdc); // ÊÍ·ÅDC
+    ReleaseDC(XBE_hWnd, hdc); // é‡Šæ”¾DC
+    return;
+}
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
-void bapi_font(int x0, int y0, LPCWSTR str, char r, char g, char b)
-{
-	// pass
-#endif
-	return;
+void bapi_font(int x0, int y0, LPCWSTR str, char r, char g, char b) {
+    // pass
+    return;
 }
+#endif
 
-/* Ğ´×Ö¶ù£¨·ÇÍ¸Ã÷±³¾°£© */
+/*  å†™å­—å„¿ï¼ˆéé€æ˜èƒŒæ™¯ï¼‰ */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
-void bapi_font_bk(int x0, int y0, int size, LPCWSTR str, char r, char g, char b, LPCWSTR font, char br, char bg, char bb)
-{
-	HDC hdc = GetDC(XBE_hWnd); // »ñÈ¡´°¿ÚµÄDC
-	SetTextColor(hdc, RGB(r, g, b)); // ´´½¨ÊµÏß»­±Ê
-	SetBkMode(hdc, BKMODE_LAST);
-	SetBkColor(hdc, RGB(br, bg, bb));
-	HFONT hFont = CreateFont(size, 0,
-		0, 0,
-		FW_NORMAL,
-		0, 0, 0,
-		GB2312_CHARSET,
-		OUT_DEFAULT_PRECIS,
-		CLIP_DEFAULT_PRECIS,
-		DEFAULT_QUALITY,
-		DEFAULT_PITCH | FF_DONTCARE,
-		font);
-	HGDIOBJ hOld = SelectObject(hdc, hFont); // ½«ÎÄ×ÖÑ¡Ôñµ½DCÖĞ
+void bapi_font_bk(int x0, int y0, int size, LPCWSTR str, char r, char g, char b,
+                  LPCWSTR font, char br, char bg, char bb) {
+    HDC hdc = GetDC(XBE_hWnd);       // è·å–çª—å£çš„DC
+    SetTextColor(hdc, RGB(r, g, b)); // åˆ›å»ºå®çº¿ç”»ç¬”
+    SetBkMode(hdc, BKMODE_LAST);
+    SetBkColor(hdc, RGB(br, bg, bb));
+    HFONT hFont =
+        CreateFont(size, 0, 0, 0, FW_NORMAL, 0, 0, 0, GB2312_CHARSET,
+                   OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY,
+                   DEFAULT_PITCH | FF_DONTCARE, font);
+    HGDIOBJ hOld = SelectObject(hdc, hFont); // å°†æ–‡å­—é€‰æ‹©åˆ°DCä¸­
 
-	// »æÍ¼²Ù×÷
-	TextOut(hdc, x0, y0, str, lstrlen(str));
+    // ç»˜å›¾æ“ä½œ
+    TextOut(hdc, x0, y0, str, lstrlen(str));
 
-	// »Ö¸´Ô­À´µÄ¶ÔÏó
-	SelectObject(hdc, hOld);
-	DeleteObject(hFont); // É¾³ı´´½¨µÄ¶ÔÏó£¬±ÜÃâÄÚ´æĞ¹Â©
+    // æ¢å¤åŸæ¥çš„å¯¹è±¡
+    SelectObject(hdc, hOld);
+    DeleteObject(hFont); // åˆ é™¤åˆ›å»ºçš„å¯¹è±¡ï¼Œé¿å…å†…å­˜æ³„æ¼
 
-	ReleaseDC(XBE_hWnd, hdc); // ÊÍ·ÅDC
+    ReleaseDC(XBE_hWnd, hdc); // é‡Šæ”¾DC
+    return;
+}
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
-void bapi_font_bk(int x0, int y0, LPCWSTR str, char r, char g, char b)
-{
-	// pass
-#endif
-	return;
+void bapi_font_bk(int x0, int y0, LPCWSTR str, char r, char g, char b) {
+    // pass
+    return;
 }
+#endif
 
-/* Í¼Æ¬ */
+/* å›¾ç‰‡ */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
-void bapi_image(int x0, int y0, int xsize, int ysize, LPCWSTR file_path)
-{
-	HBITMAP Image;
-	HWND hImage;
-	Image = (HBITMAP)LoadImage(NULL, file_path, IMAGE_BITMAP, xsize, ysize, LR_LOADFROMFILE);
-	hImage = CreateWindowW(
-		L"Static", NULL,
-		WS_VISIBLE | WS_CHILD | SS_BITMAP,
-		x0, y0, xsize, ysize,
-		XBE_hWnd, nullptr, nullptr, nullptr
-	);
-	SendMessageW(hImage, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)(Image));
+void bapi_image(int x0, int y0, int xsize, int ysize, LPCWSTR file_path) {
+    HBITMAP Image;
+    HWND hImage;
+    Image = (HBITMAP)LoadImage(NULL, file_path, IMAGE_BITMAP, xsize, ysize,
+                               LR_LOADFROMFILE);
+    hImage =
+        CreateWindowW(L"Static", NULL, WS_VISIBLE | WS_CHILD | SS_BITMAP, x0,
+                      y0, xsize, ysize, XBE_hWnd, nullptr, nullptr, nullptr);
+    SendMessageW(hImage, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)(Image));
+    return;
+}
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
-void bapi_image(int x0, int y0, int xsize, int ysize, LPCWSTR file_path)
-{
-	// pass
-#endif
-	return;
+void bapi_image(int x0, int y0, int xsize, int ysize, LPCWSTR file_path) {
+    // pass
+    return;
 }
+#endif
 
-/* Í¼±ê */
+/* å›¾æ ‡ */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
-void bapi_icon(LPCWSTR file_path)
-{
-	HBITMAP Image;
-	HWND hImage;
-	Image = (HBITMAP)LoadImage(NULL, file_path, IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
-	hImage = CreateWindowW(
-		L"Static", NULL,
-		WS_VISIBLE | WS_CHILD | SS_ICON,
-		0, 0, 64, 64,
-		XBE_hWnd, nullptr, nullptr, nullptr
-	);
-	SendMessageW(hImage, STM_SETICON, IMAGE_ICON, (LPARAM)(Image));
+void bapi_icon(LPCWSTR file_path) {
+    HBITMAP Image;
+    HWND hImage;
+    Image =
+        (HBITMAP)LoadImage(NULL, file_path, IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
+    hImage = CreateWindowW(L"Static", NULL, WS_VISIBLE | WS_CHILD | SS_ICON, 0,
+                           0, 64, 64, XBE_hWnd, nullptr, nullptr, nullptr);
+    SendMessageW(hImage, STM_SETICON, IMAGE_ICON, (LPARAM)(Image));
+    return;
+}
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
-void bapi_icon(int x0, int y0, int xsize, int ysize, LPCWSTR file_path)
-{
-	// pass
-#endif
-	return;
+void bapi_icon(int x0, int y0, int xsize, int ysize, LPCWSTR file_path) {
+    // pass
+    return;
 }
+#endif
 
-/* PNGÍ¼Æ¬ */
+/* PNGå›¾ç‰‡ */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
-void bapi_png(int x0, int y0, int xsize, int ysize, LPCWSTR file_path)
-{
-	HBITMAP Image;
-	HWND hImage;
-	Image = LoadBitmapFromResource(file_path);
-	hImage = CreateWindowW(
-		L"Static", NULL,
-		WS_VISIBLE | WS_CHILD | SS_BITMAP,
-		x0, y0, xsize, ysize,
-		XBE_hWnd, nullptr, nullptr, nullptr
-	);
-	SendMessageW(hImage, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)(Image));
+void bapi_png(int x0, int y0, int xsize, int ysize, LPCWSTR file_path) {
+    HBITMAP Image;
+    HWND hImage;
+    Image = LoadBitmapFromResource(file_path);
+    hImage =
+        CreateWindowW(L"Static", NULL, WS_VISIBLE | WS_CHILD | SS_BITMAP, x0,
+                      y0, xsize, ysize, XBE_hWnd, nullptr, nullptr, nullptr);
+    SendMessageW(hImage, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)(Image));
+    return;
+}
 #elif PLATFORM == PLATFORM_XJ380
 // XJ380
-void bapi_png(int x0, int y0, int xsize, int ysize, LPCWSTR file_path)
-{
-	// pass
-#endif
-	return;
+void bapi_png(int x0, int y0, int xsize, int ysize, LPCWSTR file_path) {
+    // pass
+    return;
 }
+#endif
