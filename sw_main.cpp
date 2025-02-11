@@ -55,7 +55,7 @@ LRESULT CALLBACK BE_WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 }
 #endif
 
-/* ��ʼ�� */
+/* 初始化 */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
 bool InitEngine(HINSTANCE hInstance, LPCWSTR Title, int width, int height) {
@@ -102,7 +102,7 @@ bool InitEngine() {
 }
 #endif
 
-/* ˢ�� */
+/* 刷新 */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
 void RefreshWindow() {
@@ -117,7 +117,7 @@ void InitEngine() {
 }
 #endif
 
-/* ��Ϣ���� */
+/* 消息处理 */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
 bool ProcessMessage(LPMSG message) {
@@ -134,7 +134,7 @@ bool ProcessMessage() {
 }
 #endif
 
-/* ��ʼ����ͼ */
+/* 初始化地图 */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
 void InitMap(const char *FilePath) {
@@ -161,7 +161,7 @@ void InitMap() {
 }
 #endif
 
-/* ������� */
+/* 鼠标坐标 */
 #if PLATFORM == PLATFORM_WINDOWS
 // Windows
 void GetMouseInfo(MOUSE_INFO *msinf) {
