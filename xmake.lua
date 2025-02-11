@@ -1,9 +1,12 @@
 add_rules("mode.debug", "mode.release")
+add_rules("plugin.vsxmake.autoupdate")
+add_rules("plugin.compile_commands.autoupdate", {outputdir = "."})
 
 target("BrigeEngine")
     set_kind("shared")
     add_files("**.cpp|Console/**.cpp")
     add_defines("UNICODE")
+    set_rundir(".")
 
 target("Console")
     set_kind("binary")
@@ -13,6 +16,7 @@ target("Console")
     add_includedirs(".")
     add_defines("UNICODE")
     add_deps("BrigeEngine")
+    set_rundir("Console")
 
 
 --
