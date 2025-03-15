@@ -1,10 +1,12 @@
 add_rules("mode.debug", "mode.release")
 add_rules("plugin.vsxmake.autoupdate")
 add_rules("plugin.compile_commands.autoupdate", {outputdir = "."})
+add_requires("glfw", "glad")
 
 target("BridgeEngine")
     set_kind("shared")
     add_files("engine/**.cpp")
+    add_packages("glfw", "glad")
     add_includedirs(".")
     add_defines("UNICODE")
 
