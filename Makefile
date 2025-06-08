@@ -33,3 +33,4 @@ check: $(C_SOURCES:%=%.tidy) $(S_SOURCES:%=%.tidy) $(HEADERS:%=%.tidy)
 
 clean: 
 	rm -f $(OBJS)
+	rm main
