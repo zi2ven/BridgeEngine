@@ -1,4 +1,4 @@
-SDL_PKG_CONFIG	:= $(shell pkg-config --cflags --libs sdl2)
+SDL_PKG_CONFIG	:= $(shell pkg-config --cflags --libs sdl3)
 
 CC				:= gcc
 C_FLAGS			:= -Wall -Wextra -O2 -g3 -I include

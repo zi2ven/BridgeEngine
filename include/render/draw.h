@@ -1,4 +1,4 @@
 #pragma once
 
-void engine_render_drawpixel(int x, int y, int color);
-void engine_render_fillrect(int ax, int ay, int width, int height, int color);
+void engine_render_drawpixel(float x, float y, int color);
+void engine_render_fillrect(float ax, float ay, float width, float height, int color);

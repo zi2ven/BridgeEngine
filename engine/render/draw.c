@@ -1,5 +1,5 @@
 #include "render/render.h"
-#include <SDL2/SDL.h>
+#include <SDL3/SDL.h>
 
 typedef struct rgba {
 	int r;
@@ -24,31 +24,31 @@ static rgba_t engine_render_hex2rgba(int color)
 	return target;
 }
 
-void engine_render_drawpixel(int x, int y, int color)
+void engine_render_drawpixel(float x, float y, int color)
 {
 	rgba_t rgba_color = engine_render_hex2rgba(color);
 
 	SDL_SetRenderDrawColor(renderer, rgba_color.r, rgba_color.g, rgba_color.b, rgba_color.a);
 
-	SDL_Log("Create pixel. x = %d y = %d color = %#x rgba = (%d, %d, %d, %d)\n", x, y, color,
+	SDL_Log("Create pixel. x = %f y = %f color = %#x rgba = (%d, %d, %d, %d)\n", x, y, color,
 			rgba_color.r, rgba_color.g, rgba_color.b, rgba_color.a);
 
-	SDL_RenderDrawPoint(renderer, x, y);
+	SDL_RenderPoint(renderer, x, y);
 }
 
-void engine_render_fillrect(int ax, int ay, int width, int height, int color)
+void engine_render_fillrect(float ax, float ay, float width, float height, int color)
 {
 	rgba_t rgba_color = engine_render_hex2rgba(color);
 
 	SDL_SetRenderDrawColor(renderer, rgba_color.r, rgba_color.g, rgba_color.b, rgba_color.a);
 
-	SDL_Rect rect;
+	SDL_FRect rect;
 	rect.x = ax;
 	rect.y = ay;
 	rect.w = width;
 	rect.h = height;
 
-	SDL_Log("Create rect. x = %d y = %d w = %d h = %d color = %#x rgba = (%d, %d, %d, %d)\n",
+	SDL_Log("Create rect. x = %f y = %f w = %f h = %f color = %#x rgba = (%d, %d, %d, %d)\n",
 			rect.x, rect.y, rect.w, rect.h, color, rgba_color.r, rgba_color.g, rgba_color.b,
 			rgba_color.a);
 
