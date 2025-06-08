@@ -10,10 +10,11 @@ all: link
 
 %.o: %.c
 		@printf "**CC** $< -> $@\n"
-		@$(CC) $(C_FLAGS) -c -o $@ $< $(SDL_PKG_CONFIG)
+		@$(CC) $(C_FLAGS) -c -o $@ $<
 
 link: $(OBJS)
-		$(CC) $(C_FLAGS) $^ -o main $(SDL_PKG_CONFIG)
+		@printf "**LINK** $^ -> main\n"
+		@$(CC) $(C_FLAGS) $^ -o main $(SDL_PKG_CONFIG)
 
 %.fmt: %
 		@printf "**fmt** $< ...\n"
@@ -31,6 +32,7 @@ format: $(C_SOURCES:%=%.fmt) $(S_SOURCES:%=%.fmt) $(HEADERS:%=%.fmt)
 check: $(C_SOURCES:%=%.tidy) $(S_SOURCES:%=%.tidy) $(HEADERS:%=%.tidy)
 		@printf "**check** done \n"
 
-clean: 
-	rm -f $(OBJS)
-	rm main
+clean:
+	@printf "Removing $(OBJS) main\n"
+	@rm -f $(OBJS)
+	@rm -f main

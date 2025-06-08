@@ -3,25 +3,35 @@
 #include "render/render.h"
 #include <SDL2/SDL.h>
 #include <stdbool.h>
+#include <string.h>
 #include <stdio.h>
 
 extern SDL_Window *window;
 
-SDL_Renderer *renderer = NULL;
+extern SDL_Renderer *renderer;
+
+static void arg_parser(int count, char *arg[]);
+
+static void arg_parser(int count, char *arg[]){
+    if (count > 1) {
+        if (strcmp(arg[1], "--help") == 0 || strcmp(arg[1], "-h") == 0){
+            printf("BridgeEngine demo\n");
+            exit(EXIT_SUCCESS);
+        }
+    }
+    return;
+}
 
 int main(int argc, char *argv[])
 {
+    arg_parser(argc, argv);
+
     if (engine_init("demo", 800, 600) != 0) {
         SDL_Log("Exit...\n");
         SDL_Quit();
     }
 
-    renderer = SDL_CreateRenderer(window, -1, 0);   // Create renderer
-
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);      // Clear renderer
-    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);  // Set blend mode
-    SDL_RenderPresent(renderer);
+    engine_render_create();
 
     engine_render_fillrect(10, 10, 100, 100, 0x114514ff);
     engine_render_drawpixel(200, 200, 0xffffffff);
