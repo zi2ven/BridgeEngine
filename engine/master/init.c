@@ -2,6 +2,8 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 
+SDL_Window *window;
+
 int engine_init(char *title, int width, int height)
 {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {

@@ -1,26 +1,19 @@
 SDL_PKG_CONFIG	:= $(shell pkg-config --cflags --libs sdl2)
 
 CC				:= gcc
-C_FLAGS			:= -Wall -Wextra -O2 -g3 $(SDL_PKG_CONFIG) -I include
+C_FLAGS			:= -Wall -Wextra -O2 -g3 -I include
 
 C_SOURCES		:= $(shell find * -name "*.c")
 OBJS			:= $(C_SOURCES:%.c=%.o)
-
-LIB_PATH = $(shell $(CC) -print-search-dirs | grep libraries | cut -d= -f2)
-CRT1_O = $(shell $(CC) -print-file-name=crt1.o)
-CRTI_O = $(shell $(CC) -print-file-name=crti.o)
-CRTN_O = $(shell $(CC) -print-file-name=crtn.o)
-LIBC = $(shell $(CC) -print-file-name=libc.so)
-DYNAMIC_LINKER = $(shell $(CC) -print-file-name=ld-linux-x86-64.so.2)
 
 all: link
 
 %.o: %.c
 		@printf "**CC** $< -> $@\n"
-		@$(CC) $(C_FLAGS) -c -o $@ $<
+		@$(CC) $(C_FLAGS) -c -o $@ $< $(SDL_PKG_CONFIG)
 
 link: $(OBJS)
-		$(CC) $(C_FLAGS) $^ -o main
+		$(CC) $(C_FLAGS) $^ -o main $(SDL_PKG_CONFIG)
 
 %.fmt: %
 		@printf "**fmt** $< ...\n"
