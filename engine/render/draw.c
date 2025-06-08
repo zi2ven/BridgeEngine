@@ -1,6 +1,5 @@
 #include "render/render.h"
 #include <SDL2/SDL.h>
-#include <stdio.h>
 
 typedef struct rgba {
 	int r;
@@ -31,12 +30,10 @@ void engine_render_drawpixel(int x, int y, int color)
 
 	SDL_SetRenderDrawColor(renderer, rgba_color.r, rgba_color.g, rgba_color.b, rgba_color.a);
 
-	SDL_Log("Create pixle. x = %d y = %d color = %#x rgba = (%d, %d, %d, %d)\n", x, y, color,
+	SDL_Log("Create pixel. x = %d y = %d color = %#x rgba = (%d, %d, %d, %d)\n", x, y, color,
 			rgba_color.r, rgba_color.g, rgba_color.b, rgba_color.a);
 
 	SDL_RenderDrawPoint(renderer, x, y);
-
-	return;
 }
 
 void engine_render_fillrect(int ax, int ay, int width, int height, int color)
@@ -56,6 +53,4 @@ void engine_render_fillrect(int ax, int ay, int width, int height, int color)
 			rgba_color.a);
 
 	SDL_RenderFillRect(renderer, &rect);
-
-	return;
 }

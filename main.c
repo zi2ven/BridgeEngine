@@ -2,7 +2,6 @@
 #include "publics.h"
 #include "render/render.h"
 #include <SDL2/SDL.h>
-#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -20,7 +19,6 @@ static void arg_parser(int count, char *arg[])
 			exit(EXIT_SUCCESS);
 		}
 	}
-	return;
 }
 
 int main(int argc, char *argv[])
@@ -35,7 +33,7 @@ int main(int argc, char *argv[])
 	engine_render_create();
 
 	engine_render_fillrect(10, 10, 100, 100, 0x114514ff);
-	engine_render_drawpixel(200, 200, 0xffffffff);
+	engine_render_drawpixel(200, 200, 0xfffffff);
 
 	bool	  running = true;
 	SDL_Event event;

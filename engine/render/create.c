@@ -1,6 +1,5 @@
 #include "render/render.h"
 #include <SDL2/SDL.h>
-#include <stdio.h>
 
 extern SDL_Window *window;
 
@@ -14,6 +13,4 @@ void engine_render_create(void)
 	SDL_RenderClear(renderer);								   // Clear renderer
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND); // Set blend mode
 	SDL_RenderPresent(renderer);
-
-	return;
 }
