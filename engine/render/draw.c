@@ -24,9 +24,9 @@ static rgba_t engine_render_hex2rgba(int color)
 	return target;
 }
 
-void engine_render_drawpixel(float x, float y, int color)
+void engine_render_drawpixel(const float x, const float y, const int color)
 {
-	rgba_t rgba_color = engine_render_hex2rgba(color);
+	const rgba_t rgba_color = engine_render_hex2rgba(color);
 
 	SDL_SetRenderDrawColor(renderer, rgba_color.r, rgba_color.g, rgba_color.b, rgba_color.a);
 
@@ -38,7 +38,7 @@ void engine_render_drawpixel(float x, float y, int color)
 
 void engine_render_fillrect(float ax, float ay, float width, float height, int color)
 {
-	rgba_t rgba_color = engine_render_hex2rgba(color);
+	const rgba_t rgba_color = engine_render_hex2rgba(color);
 
 	SDL_SetRenderDrawColor(renderer, rgba_color.r, rgba_color.g, rgba_color.b, rgba_color.a);
 
