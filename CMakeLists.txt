@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # 设置项目名称
-project(BridgeEngine)
+project(BridgeEngine LANGUAGES C CXX)
 
 # 指定C++标准
 set(CMAKE_C_STANDARD 11)
@@ -14,7 +14,7 @@ include_directories(include)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -O2 -g3")
 
 # 收集所有 .c 文件作为源文件
-file(GLOB_RECURSE SOURCES "engine/*.c")
+file(GLOB_RECURSE SOURCES "engine/*.cpp")
 
 # 添加可执行文件
 add_executable(main ${SOURCES})

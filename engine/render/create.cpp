@@ -3,11 +3,11 @@
 
 extern SDL_Window *window;
 
-SDL_Renderer *renderer = NULL;
+SDL_Renderer *renderer = nullptr;
 
-void engine_render_create(void)
+void engine_render_create()
 {
-	renderer = SDL_CreateRenderer(window, NULL); // Create renderer
+	renderer = SDL_CreateRenderer(window, nullptr); // Create renderer
 
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);								   // Clear renderer
